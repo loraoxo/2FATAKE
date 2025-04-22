@@ -1,31 +1,20 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login com TOTP</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>Gerador de Código TOTP</title>
+  <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/otplib@12.0.1/otplib.umd.min.js"></script>
-  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="app">
-    <div class="card">
-      <h1>🔐 Login com TOTP</h1>
-
-      <button id="generate-totp">Gerar Código QR</button>
-      <canvas id="qrcode" hidden></canvas>
-
-      <div class="form" id="totp-input-container" hidden>
-        <input type="text" id="totp-code" placeholder="Insira o código TOTP" maxlength="6" />
-        <button id="verify-totp">Verificar</button>
-      </div>
-
-      <p id="result"></p>
-    </div>
+  <div class="container">
+    <h1>🔐 Gerador de Código TOTP</h1>
+    <input type="text" id="secret" placeholder="Cole sua chave TOTP aqui..." />
+    <button id="generate">Gerar Código</button>
+    <p id="code" class="code-output">Seu código aparecerá aqui</p>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <script src="auth.js"></script>
 </body>
 </html>
