@@ -3,27 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gerador de Código TOTP</title>
+  <title>Gerador TOTP - 2FA</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/@otplib/core@12.0.1/dist/otplib-core.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@otplib/preset-browser@12.0.1/dist/otplib-browser.umd.min.js"></script>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-    <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">Gerador de Código TOTP</h1>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen">
+  <div class="bg-white p-6 rounded-xl shadow-md w-full max-w-sm">
+    <h1 class="text-xl font-semibold text-center text-gray-800 mb-4">Gerador de Código TOTP</h1>
     
     <div class="mb-4">
-      <label for="secret" class="block text-sm font-medium text-gray-700">Chave Secreta</label>
-      <input type="text" id="secret" value="7GJAFD7VKS6MWJSUB4KDV2NPAE" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+      <label for="secret" class="block text-sm font-medium text-gray-600 mb-1">Chave Secreta</label>
+      <input type="text" id="secret" value="7GJAFD7VKS6MWJSUB4KDV2NPAE" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
     </div>
     
-    <button onclick="generateTOTP()" class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700 transition">Gerar Código TOTP</button>
-    <button onclick="generateSecret()" class="w-full bg-gray-600 text-white p-2 rounded-md hover:bg-gray-700 transition mt-2">Gerar Nova Chave Secreta</button>
+    <button onclick="generateTOTP()" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition text-sm font-medium">Gerar Código</button>
+    <button onclick="generateSecret()" class="w-full bg-gray-500 text-white p-2 rounded-md hover:bg-gray-600 transition mt-2 text-sm font-medium">Nova Chave Secreta</button>
     
-    <div id="result" class="mt-4 text-center">
-      <p id="code" class="text-xl font-mono text-gray-800"></p>
-      <p id="timeLeft" class="text-sm text-gray-500"></p>
-      <p id="error" class="text-sm text-red-500"></p>
+    <div class="mt-4 text-center">
+      <p id="code" class="text-lg font-mono text-gray-800 bg-gray-100 p-2 rounded-md"></p>
+      <p id="timeLeft" class="text-xs text-gray-500 mt-1"></p>
+      <p id="error" class="text-xs text-red-500 mt-1"></p>
     </div>
   </div>
 
@@ -42,7 +42,7 @@
     function generateSecret() {
       const secret = generateBase32Secret();
       document.getElementById('secret').value = secret;
-      document.getElementById('error').textContent = 'Nova chave gerada! Clique em "Gerar Código TOTP" para usá-la.';
+      document.getElementById('error').textContent = 'Nova chave gerada! Clique em "Gerar Código" para usá-la.';
       document.getElementById('code').textContent = '';
       document.getElementById('timeLeft').textContent = '';
     }
@@ -88,7 +88,7 @@
           }
         }, 1000);
       } catch (error) {
-        errorElement.textContent = 'Erro ao gerar o código TOTP. Verifique a chave secreta.';
+        errorElement.textContent = 'Erro ao gerar o código. Verifique a chave secreta.';
       }
     }
 
